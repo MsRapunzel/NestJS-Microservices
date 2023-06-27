@@ -11,7 +11,7 @@ export class ReservationsService {
   constructor(
     private readonly reservationsRepository: ReservationsRepository,
     @Inject(PAYMENTS_SERVICE) private readonly paymentService: ClientProxy,
-  ) { }
+  ) {}
 
   async create(
     createReservationDto: CreateReservationDto,
@@ -20,7 +20,7 @@ export class ReservationsService {
     return this.paymentService
       .send('create_charge', {
         ...createReservationDto.charge,
-        email
+        email,
       })
       .pipe(
         map((res) => {
@@ -30,7 +30,8 @@ export class ReservationsService {
             timeStamp: new Date(),
             userId,
           });
-        }));
+        }),
+      );
   }
 
   async findAll() {
@@ -38,14 +39,14 @@ export class ReservationsService {
   }
 
   async findOne(_id: string) {
-    return this.reservationsRepository.find({ _id })
+    return this.reservationsRepository.find({ _id });
   }
 
   async update(_id: string, updateReservationDto: UpdateReservationDto) {
     return this.reservationsRepository.findOneAndUpdate(
       { _id },
       { $set: updateReservationDto },
-    )
+    );
   }
 
   async remove(_id: string) {

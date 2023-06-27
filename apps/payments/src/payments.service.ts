@@ -18,9 +18,9 @@ export class PaymentsService {
     private readonly configService: ConfigService,
     @Inject(NOTIFICATIONS_SERVICE)
     private readonly notificationService: ClientProxy,
-  ) { }
+  ) {}
 
-  async createCharge({ amount, email, }: PaymentsCreateChargeDto) {
+  async createCharge({ amount, email }: PaymentsCreateChargeDto) {
     const paymentIntent = await this.stripe.paymentIntents.create({
       amount: amount * 100,
       confirm: true,

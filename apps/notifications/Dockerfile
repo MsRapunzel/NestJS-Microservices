@@ -12,7 +12,7 @@ RUN npm install -g pnpm
 COPY apps/notifications apps/notifications
 COPY libs libs
 
-RUN pnpm install -r 
+RUN pnpm install -r
 
 RUN pnpm run build notifications
 
@@ -28,7 +28,7 @@ COPY pnpm-lock.yaml ./
 
 RUN npm install -g pnpm
 
-RUN pnpm install --prodß
+RUN pnpm install --prod
 
 COPY --from=development /usr/src/app/dist ./dist
 

@@ -5,7 +5,7 @@ import * as nodemailer from 'nodemailer';
 
 @Injectable()
 export class NotificationsService {
-  constructor(private readonly configService: ConfigService) { }
+  constructor(private readonly configService: ConfigService) {}
 
   private readonly transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -19,11 +19,11 @@ export class NotificationsService {
   });
 
   async notifyEmail({ email, text }: NotifyEmailDto) {
-  await this.transporter.sendMail({
-    from: this.configService.get('SMTP_USER'),
-    to: email,
-    subject: 'Sleepr Notification',
-    text,
-  })
+    await this.transporter.sendMail({
+      from: this.configService.get('SMTP_USER'),
+      to: email,
+      subject: 'Sleepr Notification',
+      text,
+    });
   }
 }

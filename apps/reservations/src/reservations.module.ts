@@ -16,6 +16,7 @@ import {
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { ReservationsGateway } from './reservations.gateway';
 
 @Module({
   imports: [
@@ -59,6 +60,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
         inject: [ConfigService],
       },
     ]),
+    ReservationsGateway,
     HealthModule,
   ],
   controllers: [ReservationsController],
